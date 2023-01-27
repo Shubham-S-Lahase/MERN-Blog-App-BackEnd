@@ -3,11 +3,12 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const registerRoute = require('./routes/register');
+const loginRoute = require('./routes/login');
 
 const app = express();
 
 dotenv.config();
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 
 const port = process.env.PORT || 6000;
@@ -25,6 +26,7 @@ app.get('*', (req,res) => {
 })
 
 app.use('/api/user', registerRoute);
+app.use('/api/user', loginRoute);
 
 app.listen(port, () => {
     console.log(`Server is running at localhost:${port}`);
