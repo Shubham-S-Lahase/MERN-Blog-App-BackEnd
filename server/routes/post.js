@@ -5,6 +5,7 @@ const cors = require('cors');
 const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
 const Post = require('../models/Post');
+const { route } = require("./register");
 
 const router = express.Router();
 router.use(express.json());
@@ -27,5 +28,10 @@ router.post('/Post', uploadMiddleware.single('file'), async (req, res) => {
    });
    res.json(postDoc);
 });
+
+router.get('/Post', async (req,res) => {
+     const posts = await Post.find();
+     res.json(posts);
+})
 
 module.exports = router;
