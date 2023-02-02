@@ -6,6 +6,8 @@ const registerRoute = require('./routes/register');
 const loginRoute = require('./routes/login');
 const profileRoute = require('./routes/profile');
 const logoutRoute = require('./routes/logout');
+const postRoute = require('./routes/post');
+const PostModel = require('./models/Post');
 
 const app = express();
 
@@ -33,8 +35,10 @@ app.get('*', (req,res) => {
 
 app.use('/api/user', registerRoute);
 app.use('/api/user', loginRoute);
-app.use('api/user', profileRoute);
-app.use('api/user', logoutRoute);
+app.use('/api/user', profileRoute);
+app.use('/api/user', logoutRoute);
+app.use('/api/user', postRoute);
+
 
 app.listen(port, () => {
     console.log(`Server is running at localhost:${port}`);
