@@ -1,7 +1,9 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
+const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const registerRoute = require('./routes/register');
 const loginRoute = require('./routes/login');
 const profileRoute = require('./routes/profile');
@@ -9,10 +11,10 @@ const logoutRoute = require('./routes/logout');
 const postRoute = require('./routes/post');
 const PostModel = require('./models/Post');
 
-const app = express();
 
-dotenv.config();
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(express.json());
+app.use('/uploads', express.static(__dirname+'/uploads'));
 
 
 const port = process.env.PORT || 6000;
@@ -29,15 +31,16 @@ app.get('/test', (req,res) => {
     res.json('express server test ~ OK');
 })
 
-app.get('*', (req,res) => {
-    res.status(404).send("API Not Found");
-})
+// app.get('*', (req,res) => {
+//     res.status(404).send("API Not Found");
+// })
 
 app.use('/api/user', registerRoute);
 app.use('/api/user', loginRoute);
 app.use('/api/user', profileRoute);
 app.use('/api/user', logoutRoute);
 app.use('/api/user', postRoute);
+
 
 
 app.listen(port, () => {
