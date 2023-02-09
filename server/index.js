@@ -12,7 +12,7 @@ const postRoute = require('./routes/post');
 const PostModel = require('./models/Post');
 
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: "https://preeminent-rabanadas-965c62.netlify.app" }));
 app.use(express.json());
 app.use('/uploads', express.static(__dirname+'/uploads'));
 
