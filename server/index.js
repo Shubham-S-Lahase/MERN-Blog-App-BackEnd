@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const registerRoute = require('./routes/register');
 const loginRoute = require('./routes/login');
 const profileRoute = require('./routes/profile');
@@ -12,7 +13,7 @@ const postRoute = require('./routes/post');
 const PostModel = require('./models/Post');
 
 
-app.use(cors({ credentials: true, origin: "https://preeminent-rabanadas-965c62.netlify.app" }));
+app.use(cors({ credentials: true, origin: "https://guileless-tapioca-a07231.netlify.app" }));
 app.use(express.json());
 app.use('/uploads', express.static(__dirname+'/uploads'));
 
@@ -30,10 +31,6 @@ mongoose.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true}).then(() 
 app.get('/test', (req,res) => {
     res.json('express server test ~ OK');
 })
-
-// app.get('*', (req,res) => {
-//     res.status(404).send("API Not Found");
-// })
 
 app.use('/api/user', registerRoute);
 app.use('/api/user', loginRoute);
