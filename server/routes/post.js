@@ -21,7 +21,7 @@ router.post("/Post", uploadMiddleware.single("file"), async (req, res) => {
   const newPath = path + "." + extension;
   fs.renameSync(path, newPath);
   const { token } = req.cookies;
-  jwt.verify(token, secret, {}, async (err, info) => {
+  jwt.verify(async (err, info) => {
     if (err) throw err;
     const { title, summary, content } = req.body;
     const postDoc = await Post.create({
@@ -63,7 +63,7 @@ router.put("/Post", uploadMiddleware.single('file'), async (req, res) => {
   }
 
   const { token } = req.cookies;
-  jwt.verify(token, secret, {}, async (err, info) => {
+  jwt.verify(async (err, info) => {
     if (err) throw err;
     const { id, title, summary, content } = req.body;
     const postDoc = await Post.findById(id);

@@ -11,10 +11,11 @@ router.use(cookieParser());
 router.get('/Profile', (req,res) => {
     const {token} = req.cookies;
     console.log(token);
-    jwt.verify(token, secret, {}, (err, info) => {
+    jwt.verify((err, info) => {
         if (err) throw err;
         res.json(info);
     });
+    
 });
 
 module.exports = router;
