@@ -13,7 +13,7 @@ const postRoute = require('./routes/post');
 const PostModel = require('./models/Post');
 
 
-app.use(cors({ credentials: true, origin: "https://guileless-tapioca-a07231.netlify.app" }));
+app.use(cors({ credentials: true, origin: "https://bloggertrigger.onrender.com" }));
 app.use(express.json());
 app.use('/uploads', express.static(__dirname+'/uploads'));
 
