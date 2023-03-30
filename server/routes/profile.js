@@ -9,10 +9,10 @@ router.use(express.json());
 router.use(cookieParser());
 
 router.get('/Profile', (req,res) => {
-    // const {token} = req.cookies;
-    // console.log(token);
-    jwt.verify((info) => {
-        // if (err) throw err;
+    const {token} = req.cookies;
+    console.log(token);
+    jwt.verify(token, secret, {}, (err, info) => {
+        if (err) throw err;
         res.json(info);
     });
     
